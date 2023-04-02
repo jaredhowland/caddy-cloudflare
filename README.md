@@ -10,10 +10,10 @@ The `Caddyfile` assumes you have `PHP-FPM` installed as well and creates some de
 # The following commands assume you have `podman`, `podman-compose`, git`, and `nano` installed
 git clone https://github.com/jaredhowland/caddy-cloudflare.git caddy
 cd caddy
-# Edit `Caddyfile` to meet your needs
+# Edit `Caddyfile` to meet your needs (including your Cloudflare API token)
 nano Caddyfile
-# Edit `.env` file with your Cloudflare API token
-nano .env
 # Place your files in the `websites` directory and build Caddy
-podman-compose up --build
+podman build -t caddy:latest .
+# Or, if you would like to build with a different version or different module(s):
+podman build -t caddy:latest --build-arg CADDY_VERSION=2.6.4 --build-arg CADDY_MODULES="--with github.com/caddy-dns/cloudflare --with …" .
 ```
