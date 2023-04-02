@@ -6,7 +6,7 @@ FROM caddy:$CADDY_VERSION-builder-alpine AS build
 ARG CADDY_VERSION
 ARG CADDY_MODULES
 
-RUN xcaddy build $CADDY_MODULES
+RUN XCADDY_SKIP_CLEANUP=0 xcaddy build $CADDY_MODULES
 
 FROM caddy:$CADDY_VERSION-alpine AS final
 
