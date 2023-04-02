@@ -13,7 +13,7 @@ cd caddy
 # Edit `Caddyfile` to meet your needs (including your Cloudflare API token)
 nano Caddyfile
 # Place your files in the `websites` directory and build Caddy
-podman build -t caddy-cf:latest .
+podman build -t caddy-cf:latest --no-cache .
 # Or, if you would like to build with a different version or different module(s):
-podman build -t caddy:latest --build-arg CADDY_VERSION=2.6.4 --build-arg CADDY_MODULES="--with github.com/caddy-dns/cloudflare --with …" .
+podman build -t caddy-cf:latest --no-cache --build-arg CADDY_VERSION=2.6.4 --build-arg CADDY_MODULES="--with github.com/caddy-dns/cloudflare --with …" .
 ```
