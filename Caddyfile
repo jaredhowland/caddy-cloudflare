@@ -1,0 +1,51 @@
+# The Caddyfile is an easy way to configure your Caddy web server.
+#
+# Unless the file starts with a global options block, the first
+# uncommented line is always the address of your site.
+#
+# To use your own domain name (with automatic HTTPS), first make
+# sure your domain's A/AAAA DNS records are properly pointed to
+# this machine's public IP, then replace ":80" below with your
+# domain name.
+
+(website) {
+    # Setup Cloudflare so certificates can be auto-issued and renewed
+    tls email@example.com {
+      dns cloudflare {env.CF_API_TOKEN}
+    }
+
+    # Compress files
+    encode zstd gzip
+
+    # Serve a PHP site through php-fpm:
+    php_fastcgi php:9000 {
+      try_files {path} {path}/index.php =404
+    }
+
+    # Use a Caddy template to handle all errors
+    handle_errors {
+      rewrite * /error.html
+      templates
+      file_server
+    }
+
+    # Enable the static file server.
+    file_server
+}
+
+DOMAIN1.TLD {
+    import website
+
+    # Set this path to your site's directory.
+    root * /var/www/html/DOMAIN1.TLD/public_html
+}
+
+DOMAIN2.TLD {
+    import website
+
+    # Set this path to your site's directory.
+    root * /var/www/html/DOMAIN2.TLD/public_html
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
