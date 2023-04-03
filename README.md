@@ -1,7 +1,7 @@
 # jaredhowland/caddy-cloudflare
 Docker container for setting up a Caddy 2 server with Cloudflare DNS
 
-The `Caddyfile` assumes you have `PHP-FPM` installed as well and creates some defaults settings to ensure it runs properly. You can remove that part of the Caddyfile should you not want that.
+The `Caddyfile` assumes you have `PHP-FPM` installed as well and creates some default settings to ensure it runs properly. You can remove that part of the Caddyfile should you not want it.
 
 # Usage
 ```bash
@@ -10,7 +10,7 @@ The `Caddyfile` assumes you have `PHP-FPM` installed as well and creates some de
 # The following commands assume you have `podman`, `podman-compose`, git`, and `nano` installed
 git clone https://github.com/jaredhowland/caddy-cloudflare.git caddy
 cd caddy
-# Edit `Caddyfile` to meet your needs (including your Cloudflare API token)
+# Edit `Caddyfile` to meet your needs (including your Cloudflare email and API token)
 nano Caddyfile
 # Place your files in the `websites` directory and build Caddy
 podman build -t caddy-cf:latest --no-cache .
