@@ -6,6 +6,8 @@ Docker container for a Caddy 2 server with Cloudflare DNS module pre-installed.
 docker pull ghcr.io/jaredhowland/caddy-cf:latest
 ```
 
+[List of all available image tags](https://github.com/jaredhowland/caddy-cloudflare/pkgs/container/caddy-cf/versions)
+
 # Example `Caddyfile`
 ```yaml
 # The Caddyfile is an easy way to configure your Caddy web server.
