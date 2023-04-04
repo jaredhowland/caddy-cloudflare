@@ -11,6 +11,8 @@ docker pull ghcr.io/jaredhowland/caddy-cf:latest
 # Example `Caddyfile`
 This example assumes you have PHP-FPM running in a separate container named `php`. Adjust as needed if this is not what you need. See [Caddyfile documentation](https://caddyserver.com/docs/caddyfile) for more information.
 
+It also assumes you serve all your sites from `/var/www/html` and each domain has its own directory with a `public_html` directory inside for serving your site. For example, if your domain is `domain.com` it assumes you are serving that site via `/var/www/html/domain.com/public_html`. Again, change this to meet your needs.
+
 ```yaml
 # The Caddyfile is an easy way to configure your Caddy web server.
 #
@@ -27,6 +29,8 @@ This example assumes you have PHP-FPM running in a separate container named `php
     tls email@example.com {
       dns cloudflare {env.CF_API_TOKEN}
     }
+    
+    root * /var/www/html/{args.0}/public_html
 
     # Compress files
     encode zstd gzip
@@ -48,17 +52,11 @@ This example assumes you have PHP-FPM running in a separate container named `php
 }
 
 DOMAIN1.TLD {
-    import website
-
-    # Set this path to your site's directory.
-    root * /var/www/html/DOMAIN1.TLD/public_html
+    import website "DOMAIN1.TLD"
 }
 
 DOMAIN2.TLD {
-    import website
-
-    # Set this path to your site's directory.
-    root * /var/www/html/DOMAIN2.TLD/public_html
+    import website "DOMAIN2.TLD"
 }
 
 # Refer to the Caddy docs for more information:
@@ -67,7 +65,7 @@ DOMAIN2.TLD {
 ```
 
 # Example `error.html` File
-Place this in the root directory of the site(s) you are serving through caddy to automatically generate an error page (404 etc.).
+Place this in the root directory of the site(s) you are serving through Caddy to automatically generate an error page (404 etc.).
 
 ```html
 <!doctype html>
