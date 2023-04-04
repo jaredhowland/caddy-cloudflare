@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG CADDY_VERSION=2.6.4
 ARG CADDY_MODULES="--with github.com/caddy-dns/cloudflare"
 
