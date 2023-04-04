@@ -6,9 +6,11 @@ Docker container for a Caddy 2 server with Cloudflare DNS module pre-installed.
 docker pull ghcr.io/jaredhowland/caddy-cf:latest
 ```
 
-[List of all available image tags](https://github.com/jaredhowland/caddy-cloudflare/pkgs/container/caddy-cf/versions)
+[List of all available image tags](https://github.com/users/jaredhowland/packages?repo_name=caddy-cloudflare)
 
 # Example `Caddyfile`
+This example assumes you have PHP-FPM running in a separate container named `php`. Adjust as needed if this is not what you need. See [Caddyfile documentation](https://caddyserver.com/docs/caddyfile) for more information.
+
 ```yaml
 # The Caddyfile is an easy way to configure your Caddy web server.
 #
@@ -29,7 +31,7 @@ docker pull ghcr.io/jaredhowland/caddy-cf:latest
     # Compress files
     encode zstd gzip
 
-    # Serve a PHP site through PHP_FPM (assumes your PHP container is named `php`)
+    # Serve a PHP site through PHP-FPM (assumes your PHP container is named `php`)
     php_fastcgi php:9000 {
       try_files {path} {path}/index.php =404
     }
@@ -65,6 +67,8 @@ DOMAIN2.TLD {
 ```
 
 # Example `error.html` File
+Place this in the root directory of the site(s) you are serving through caddy to automatically generate an error page (404 etc.).
+
 ```html
 <!doctype html>
 <html lang=en>

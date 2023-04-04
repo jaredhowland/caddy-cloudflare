@@ -1,4 +1,6 @@
-# Adapted from https://github.com/caddyserver/caddy-docker/blob/master/2.6/alpine/Dockerfile
+# Adapted from:
+# https://github.com/caddyserver/caddy-docker/blob/master/2.6/alpine/Dockerfile
+# https://caddyserver.com/download?package=github.com%2Fcaddy-dns%2Fcloudflare
 FROM alpine:3.16
 
 RUN apk add --no-cache \
