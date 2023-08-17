@@ -30,7 +30,7 @@ It also assumes you serve all your sites from `/var/www/html` and each domain ha
       dns cloudflare {env.CF_API_TOKEN}
     }
     
-    root * /var/www/html/{args.0}/public_html
+    root * /var/www/html/{args[0]}/public_html
 
     # Compress files
     encode zstd gzip
