@@ -1,5 +1,5 @@
 # jaredhowland/caddy-cloudflare
-Docker container for a Caddy 2 server with Cloudflare DNS module pre-installed.
+Docker container for a Caddy 2 server with Cloudflare DNS module pre-installed. Based on the [official Caddy Docker image](https://github.com/caddyserver/caddy-docker).
 
 # Usage
 ```bash
